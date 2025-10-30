@@ -3,9 +3,9 @@
 // If you already have app/page.tsx, replace its contents with this file.
 import React from "react"; // client component for framer-motion & shadcn/ui
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
 import { ArrowRight, Newspaper, Lightbulb, LineChart, Sparkles, Cpu, Users, Library } from "lucide-react";
 
 // ------------------------------------------------------------
