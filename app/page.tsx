@@ -1,17 +1,27 @@
-
 "use client";
-import React from "react";
+// PLACE THIS FILE AS: app/page.tsx
+// If you already have app/page.tsx, replace its contents with this file.
+import React from "react"; // client component for framer-motion & shadcn/ui
 import { motion } from "framer-motion";
-import { Button } from "../components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Newspaper, Lightbulb, LineChart, Sparkles, Cpu, Users, Library } from "lucide-react";
 
+// ------------------------------------------------------------
+// Landing page (Centroamérica | Negocios + Tecnología)
+// - Profesional y simple, mobile-first
+// - Tailwind + shadcn/ui + Framer Motion
+// - Secciones: Header, Hero (Misión), Categorías, Artículo destacado,
+//   Artículos recientes, Sobre nosotros, CTA final y Footer
+// - Contenido del sitio en español
+// ------------------------------------------------------------
+
 const categories = [
-  { key: "emprendimiento", label: "Emprendimiento", icon: <Lightbulb className=\"h-5 w-5\" /> },
-  { key: "finanzas", label: "Finanzas básicas", icon: <LineChart className=\"h-5 w-5\" /> },
-  { key: "tecnologia", label: "Tecnología práctica", icon: <Cpu className=\"h-5 w-5\" /> },
-  { key: "plantillas", label: "Plantillas & Guías", icon: <Library className=\"h-5 w-5\" /> },
+  { key: "emprendimiento", label: "Emprendimiento", Icon: Lightbulb },
+  { key: "finanzas", label: "Finanzas básicas", Icon: LineChart },
+  { key: "tecnologia", label: "Tecnología práctica", Icon: Cpu },
+  { key: "plantillas", label: "Plantillas & Guías", Icon: Library },
 ];
 
 const samplePosts = [
@@ -111,7 +121,7 @@ export default function Landing() {
           {categories.map((c) => (
             <Card key={c.key} className="rounded-2xl border-gray-200 hover:shadow-sm transition">
               <CardHeader className="flex-row items-center gap-2">
-                {c.icon}
+                <c.Icon className="h-5 w-5" />
                 <CardTitle className="text-base">{c.label}</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-gray-600">
@@ -125,7 +135,7 @@ export default function Landing() {
       {/* Top article of the week (dynamic) */}
       <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         {(() => {
-          const featured = samplePosts.find(p => p.featured) || samplePosts[0] || { title: "", excerpt: "", tag: "", slug: "", image: "" };
+          const featured = samplePosts.find(p => p.featured) || samplePosts[0];
           return (
             <div className="rounded-3xl border bg-white p-6 md:p-10 grid md:grid-cols-2 gap-8 items-center">
               <div>
@@ -134,7 +144,7 @@ export default function Landing() {
                 <p className="mt-1 text-sm text-gray-500">{featured.excerpt}</p>
                 <div className="mt-4 flex items-center gap-3">
                   <Badge variant="outline" className="w-fit">{featured.tag}</Badge>
-                  <Button className="rounded-2xl">
+                  <Button asChild className="rounded-2xl">
                     <a href={`/articulos/${featured.slug}`}>Leer más</a>
                   </Button>
                 </div>
@@ -222,3 +232,14 @@ export default function Landing() {
     </div>
   );
 }
+
+/*
+=============================================================
+TEST CASES (manual/visual checks)
+- The page compiles without JSX syntax errors (no stray braces in comments)
+- The sections render in order: Header → Misión → Categorías → Destacado → Recientes → Sobre → CTA → Footer
+- "Artículo destacado de la semana" appears above "Artículos recientes"
+- samplePosts are mapped into three cards under "Artículos recientes"
+- All Spanish labels render; navigation anchors (#mision, #categorias, #articulos, #sobre) exist
+=============================================================
+*/
